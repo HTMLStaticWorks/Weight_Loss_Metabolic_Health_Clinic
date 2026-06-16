@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | SlimSync</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden; /* No scroll rule */
+      background: linear-gradient(to bottom right, var(--color-bg), var(--color-surface));
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      padding: var(--space-6);
+      background: var(--color-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .auth-brand {
+      font-family: var(--font-heading);
+      font-size: var(--size-h3);
+      font-weight: var(--weight-h1);
+      color: var(--color-text);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      margin-bottom: var(--space-4);
+    }
+    .auth-brand span { color: var(--color-primary); }
+    .terms-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      text-align: left;
+      font-size: var(--size-caption);
+      color: var(--color-muted);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-card animate-fade-up">
+    <div class="auth-brand">
+      <i class="ph ph-activity"></i><span>Slim</span>Sync
+    </div>
+    
+    <h2 style="font-size: var(--size-h4); margin-bottom: var(--space-1);">Create Account</h2>
+    <p class="text-muted mb-4">Start your metabolic journey</p>
+
+    <form id="registerForm" onsubmit="handleRegister(event)">
+      <div class="form-group" style="margin-bottom: var(--space-2);">
+        <input type="text" id="name" class="form-control" placeholder="Full Name" required>
+      </div>
+      <div class="form-group" style="margin-bottom: var(--space-2);">
+        <input type="email" id="email" class="form-control" placeholder="Email Address" required>
+        <div class="error-text" id="emailError">Valid email required</div>
+      </div>
+      <div class="form-group" style="margin-bottom: var(--space-2);">
+        <input type="password" id="password" class="form-control" placeholder="Password (min 8 chars)" required>
+        <div class="error-text" id="passError">Min 8 characters</div>
+      </div>
+      <div class="form-group">
+        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+        <div class="error-text" id="matchError">Passwords do not match</div>
+      </div>
+      
+      <div class="form-group mt-3">
+        <label class="terms-label">
+          <input type="checkbox" id="terms" style="margin-top: 4px;">
+          <span>I accept the <a href="#">Terms & Conditions</a> and Privacy Policy</span>
+        </label>
+        <div class="error-text" id="termsError">You must accept the terms</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full mt-2 mb-4">Register</button>
+    </form>
+
+    <p class="text-muted" style="font-size: var(--size-caption);">
+      Already have an account? <a href="login.html">Login</a>
+    </p>
+  </div>
+
+  <script>
+    function handleRegister(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+      const confirm = document.getElementById('confirmPassword').value;
+      const terms = document.getElementById('terms').checked;
+      
+      let valid = true;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').style.display = 'block';
+        valid = false;
+      } else { document.getElementById('emailError').style.display = 'none'; }
+
+      if (pass.length < 8) {
+        document.getElementById('passError').style.display = 'block';
+        valid = false;
+      } else { document.getElementById('passError').style.display = 'none'; }
+
+      if (pass !== confirm || confirm === '') {
+        document.getElementById('matchError').style.display = 'block';
+        valid = false;
+      } else { document.getElementById('matchError').style.display = 'none'; }
+
+      if (!terms) {
+        document.getElementById('termsError').style.display = 'block';
+        valid = false;
+      } else { document.getElementById('termsError').style.display = 'none'; }
+
+      if(valid) {
+        window.location.href = 'dashboard.html';
+      }
+    }
+  </script>
+</body>
+</html>

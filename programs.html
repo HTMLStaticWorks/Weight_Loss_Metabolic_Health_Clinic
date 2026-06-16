@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs | SlimSync</title>
+
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-8);
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .comparison-table th {
+      background: var(--color-bg);
+      font-weight: var(--weight-h4);
+      font-size: var(--size-lead);
+    }
+
+    .comparison-table th:first-child,
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: var(--weight-bold-inline);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sticky-bar {
+      position: sticky;
+      top: 80px;
+      background: var(--color-bg);
+      z-index: 100;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-2) 0;
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .sticky-bar.visible {
+        display: block;
+      }
+    }
+
+    /* Responsive Comparison Table Wrapper */
+    @media (max-width: 767px) {
+      .table-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        margin-top: var(--space-8);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        display: block;
+        width: 100%;
+        scrollbar-width: auto;
+        scrollbar-color: var(--color-primary) var(--color-bg);
+      }
+
+      .table-wrapper::-webkit-scrollbar {
+        height: 10px;
+        display: block;
+      }
+
+      .table-wrapper::-webkit-scrollbar-track {
+        background: var(--color-bg);
+        border-radius: 4px;
+      }
+
+      .table-wrapper::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 4px;
+      }
+
+      .table-wrapper::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary-dark, #0a5656);
+      }
+
+      .table-wrapper .comparison-table {
+        min-width: 700px;
+        margin-top: 0;
+      }
+    }
+
+    .faq-accordion {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: var(--space-4) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--size-lead);
+      font-family: var(--font-body);
+      font-weight: var(--weight-btn);
+      color: var(--color-text);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      color: var(--color-muted);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: var(--space-4);
+    }
+
+    .faq-item.active .ph-caret-down {
+      transform: rotate(180deg);
+    }
+
+    .ph-caret-down {
+      transition: transform 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="backdrop"></div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <i class="ph ph-activity"></i>
+        <span>Slim</span>Sync
+      </a>
+
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="programs.html" class="nav-link active">Programs</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="coaching.html" class="nav-link">Coaching</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <i class="ph ph-arrows-left-right"></i>
+        </button>
+        <a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <aside class="nav-drawer">
+    <button class="icon-btn drawer-close" aria-label="Close Drawer">
+      <i class="ph ph-x"></i>
+    </button>
+
+    <div class="drawer-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="home2.html" class="nav-link">Home 2</a>
+      <a href="programs.html" class="nav-link active">Programs</a>
+      <a href="results.html" class="nav-link">Results</a>
+      <a href="coaching.html" class="nav-link">Coaching</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+
+    <div class="drawer-actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+        <i class="ph ph-moon"></i>
+      </button>
+      <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+        <i class="ph ph-arrows-left-right"></i>
+      </button>
+      <a href="login.html" class="btn btn-primary w-full">Login</a>
+    </div>
+  </aside>
+
+  <main style="padding-top: 80px;">
+    <!-- Page Hero -->
+    <section class="page-hero"
+      style="padding: var(--space-12) 0; text-align: center; background-color: var(--color-surface);">
+      <div class="container animate-fade-up">
+        <h1>Clinical Pathways to Weight Loss</h1>
+        <p class="text-muted" style="font-size: var(--size-lead); max-width: 600px; margin: var(--space-4) auto 0;">
+          Compare our medical and coaching programs to find the perfect fit for your metabolic profile.</p>
+      </div>
+    </section>
+
+    <!-- Sticky Bar 
+    <div class="sticky-bar" id="stickyComparison">
+      <div class="container d-flex justify-between align-center">
+        <h4 style="margin:0;">Program Comparison</h4>
+        <div class="d-flex gap-4">
+          <a href="#" class="btn btn-text">Starter</a>
+          <a href="#" class="btn btn-primary">Metabolic Reset</a>
+          <a href="#" class="btn btn-outline">Elite Coaching</a>
+        </div>
+      </div>
+    </div>(Desktop Only) -->
+
+
+
+    <!-- Program Success Snapshot -->
+    <section style="padding: var(--section-padding);">
+      <div class="container">
+        <div class="success-snapshot-grid">
+
+          <!-- Left: Image -->
+          <div class="animate-fade-up" style="position: relative;">
+            <img src="assets/images/program-success.jpg" alt="SlimSync patient success"
+              style="width: 100%; height: 580px; object-fit: cover; border-radius: var(--radius); display: block;">
+          </div>
+
+          <!-- Right: Stats & Content -->
+          <div class="animate-fade-up delay-1 success-snapshot-content">
+            <h2 style="margin-bottom: var(--space-2);">Programs That Deliver <br>Measurable Results.</h2>
+            <p class="text-muted" style="font-size: var(--size-lead); margin-bottom: var(--space-6);">
+              Every SlimSync program is built on peer-reviewed clinical data, personalised lab work, and ongoing
+              physician oversight — not guesswork.
+            </p>
+
+            <!-- Stats Grid -->
+            <div style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-4);
+          margin-bottom: var(--space-6);
+        ">
+              <div style="
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+            text-align: center;
+          ">
+                <div style="
+              font-family: var(--font-heading);
+              font-weight: var(--weight-h1);
+              font-size: var(--size-h2);
+              color: var(--color-primary);
+              line-height: 1;
+              margin-bottom: 6px;
+            ">95%</div>
+                <div class="text-muted" style="font-size: var(--size-label);">Patient Success Rate</div>
+              </div>
+
+              <div style="
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+            text-align: center;
+          ">
+                <div style="
+              font-family: var(--font-heading);
+              font-weight: var(--weight-h1);
+              font-size: var(--size-h2);
+              color: var(--color-primary);
+              line-height: 1;
+              margin-bottom: 6px;
+            ">32 lbs</div>
+                <div class="text-muted" style="font-size: var(--size-label);">Average Weight Lost</div>
+              </div>
+
+              <div style="
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+            text-align: center;
+          ">
+                <div style="
+              font-family: var(--font-heading);
+              font-weight: var(--weight-h1);
+              font-size: var(--size-h2);
+              color: var(--color-primary);
+              line-height: 1;
+              margin-bottom: 6px;
+            ">16 wks</div>
+                <div class="text-muted" style="font-size: var(--size-label);">Avg. Time to Results</div>
+              </div>
+
+              <div style="
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+            text-align: center;
+          ">
+                <div style="
+              font-family: var(--font-heading);
+              font-weight: var(--weight-h1);
+              font-size: var(--size-h2);
+              color: var(--color-primary);
+              line-height: 1;
+              margin-bottom: 6px;
+            ">15k+</div>
+                <div class="text-muted" style="font-size: var(--size-label);">Patients Treated</div>
+              </div>
+            </div>
+
+            <!-- Feature points -->
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); align-items: center;">
+              <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+                <i class="ph ph-check-circle" style="color: var(--color-success); font-size: 22px; flex-shrink: 0;"></i>
+                <span style="font-size: var(--size-label); text-align: left;">FDA-approved GLP-1 medications included in clinical plans</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+                <i class="ph ph-check-circle" style="color: var(--color-success); font-size: 22px; flex-shrink: 0;"></i>
+                <span style="font-size: var(--size-label); text-align: left;">Personalised dosing adjusted weekly by your physician</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+                <i class="ph ph-check-circle" style="color: var(--color-success); font-size: 22px; flex-shrink: 0;"></i>
+                <span style="font-size: var(--size-label); text-align: left;">Cancel or pause anytime — no long-term contracts</span>
+              </div>
+            </div>
+
+            <a href="contact.html" class="btn btn-primary">Start My Program</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* 1440px and above */
+      .success-snapshot-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        align-items: center;
+      }
+
+      .success-snapshot-content {
+        padding-left: var(--space-4);
+        text-align: center;
+      }
+
+      /* 1024px — 1280px */
+      @media (max-width: 1280px) and (min-width: 1025px) {
+        .success-snapshot-grid {
+          gap: var(--space-6);
+        }
+
+        .success-snapshot-content {
+          padding-left: var(--space-2);
+        }
+      }
+
+      /* Below 1024px — stack */
+      @media (max-width: 1024px) {
+        .success-snapshot-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-6);
+        }
+
+        .success-snapshot-content {
+          padding-left: 0;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 640px) {
+        .success-snapshot-grid img {
+          height: 300px !important;
+        }
+      }
+    </style>
+
+    <!-- Comparison Table -->
+    <section style="padding: var(--section-padding);">
+      <div class="container animate-fade-up delay-1">
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Features</th>
+                <th>Starter<br><span style="font-size: var(--size-body); font-weight: normal;">$99/mo</span></th>
+                <th style="color: var(--color-primary);">Metabolic Reset<br><span
+                    style="font-size: var(--size-body); font-weight: normal;">$299/mo</span></th>
+                <th>Elite Coaching<br><span style="font-size: var(--size-body); font-weight: normal;">$499/mo</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Custom Meal Plan</td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+              </tr>
+              <tr>
+                <td>GLP-1 Medication Included</td>
+                <td>-</td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Weekly Medical Review</td>
+                <td>-</td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+              </tr>
+              <tr>
+                <td>1-on-1 Daily Coaching</td>
+                <td>-</td>
+                <td>-</td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+              </tr>
+              <tr>
+                <td>Comprehensive Lab Panel</td>
+                <td>-</td>
+                <td>Optional ($99)</td>
+                <td><i class="ph ph-check-circle" style="color: var(--color-success); font-size: 24px;"></i></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><a href="#" class="btn btn-outline w-full">Select</a></td>
+                <td><a href="#" class="btn btn-primary w-full">Select</a></td>
+                <td><a href="#" class="btn btn-outline w-full">Select</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section style="padding: var(--section-padding); background: var(--color-surface);">
+      <div class="container animate-fade-up delay-2">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question">What medications are included in the Metabolic Reset? <i
+                class="ph ph-caret-down"></i></button>
+            <div class="faq-answer">
+              <p>We prescribe clinically proven GLP-1 medications such as Semaglutide or Tirzepatide, based on your
+                medical evaluation and lab results.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Do I need to do blood work? <i class="ph ph-caret-down"></i></button>
+            <div class="faq-answer">
+              <p>Yes, for any medical prescription program, recent lab work is required. We can order this for you if
+                you don't have recent results.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Can I cancel my subscription at any time? <i
+                class="ph ph-caret-down"></i></button>
+            <div class="faq-answer">
+              <p>Absolutely. There are no long-term contracts. You can manage your subscription directly from your
+                patient dashboard.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="text-muted">&copy; 2026 SlimSync Medical Weight Loss.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // FAQ Logic
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Sticky Bar Logic
+    const stickyBar = document.getElementById('stickyComparison');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400 && window.innerWidth > 1024) {
+        stickyBar.classList.add('visible');
+      } else {
+        stickyBar.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+
+</html>

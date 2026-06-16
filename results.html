@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results & Transformations | SlimSync</title>
+
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+    }
+
+    .filter-btn {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      padding: 8px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: var(--weight-btn);
+      transition: all var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .masonry-grid {
+      column-count: 1;
+      column-gap: var(--space-4);
+    }
+
+    @media (min-width: 768px) {
+      .masonry-grid {
+        column-count: 2;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .masonry-grid {
+        column-count: 3;
+      }
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: var(--space-4);
+      background: var(--color-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .masonry-item img {
+      width: 100%;
+      border-radius: 0;
+    }
+
+    .masonry-content {
+      padding: var(--space-4);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <i class="ph ph-activity"></i>
+        <span>Slim</span>Sync
+      </a>
+
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="programs.html" class="nav-link">Programs</a>
+        <a href="results.html" class="nav-link active">Results</a>
+        <a href="coaching.html" class="nav-link">Coaching</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <i class="ph ph-arrows-left-right"></i>
+        </button>
+        <a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <aside class="nav-drawer">
+    <button class="icon-btn drawer-close" aria-label="Close Drawer">
+      <i class="ph ph-x"></i>
+    </button>
+
+    <div class="drawer-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="home2.html" class="nav-link">Home 2</a>
+      <a href="programs.html" class="nav-link">Programs</a>
+      <a href="results.html" class="nav-link active">Results</a>
+      <a href="coaching.html" class="nav-link">Coaching</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+
+    <div class="drawer-actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+        <i class="ph ph-moon"></i>
+      </button>
+      <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+        <i class="ph ph-arrows-left-right"></i>
+      </button>
+      <a href="login.html" class="btn btn-primary w-full">Login</a>
+    </div>
+  </aside>
+
+  <main style="padding-top: 80px;">
+    <section class="page-hero"
+      style="padding: var(--space-12) 0; text-align: center; background-color: var(--color-surface);">
+      <div class="container animate-fade-up">
+        <h1>Real People. Real Results.</h1>
+        <p class="text-muted" style="font-size: var(--size-lead); max-width: 600px; margin: var(--space-4) auto 0;">See
+          what happens when you combine clinical science with dedicated support.</p>
+      </div>
+    </section>
+
+    <!-- Featured Transformation -->
+    <section style="padding: var(--section-padding); background: var(--color-surface);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>One Journey. Real Proof.</h2>
+          <p>A single patient's full transformation documented across 24 weeks on the Metabolic Reset Program.</p>
+        </div>
+
+        <div class="animate-fade-up delay-1" style="
+      background: var(--color-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    ">
+
+          <!-- Images Row -->
+          <div style="
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+      ">
+            <!-- Before Image -->
+            <div style="position: relative;">
+              <img src="assets/images/transformation-before.jpg" alt="Before - Week 1" style="
+              width: 100%; height: 520px;
+              object-fit: cover; object-position: top;
+              display: block; border-radius: 0;
+            ">
+              <div style="
+            position: absolute; top: var(--space-3); left: var(--space-3);
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(4px);
+            color: white; padding: 6px 16px;
+            border-radius: 100px;
+            font-size: var(--size-label);
+            font-weight: var(--weight-bold-inline);
+          ">Week 1</div>
+            </div>
+
+            <!-- After Image -->
+            <div style="position: relative;">
+              <img src="assets/images/transformation-after.jpg" alt="After - Week 24" style="
+              width: 100%; height: 520px;
+              object-fit: cover; object-position: top;
+              display: block; border-radius: 0;
+            ">
+              <div style="
+            position: absolute; top: var(--space-3); left: var(--space-3);
+            background: var(--color-primary);
+            color: white; padding: 6px 16px;
+            border-radius: 100px;
+            font-size: var(--size-label);
+            font-weight: var(--weight-bold-inline);
+          ">Week 24</div>
+            </div>
+
+            <!-- Center VS divider -->
+            <div style="
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 44px; height: 44px;
+          border-radius: 50%;
+          background: var(--color-bg);
+          border: 2px solid var(--color-border);
+          display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-heading);
+          font-weight: var(--weight-h2);
+          font-size: var(--size-caption);
+          color: var(--color-primary);
+          z-index: 2;
+          box-shadow: var(--shadow);
+        ">VS</div>
+          </div>
+
+          <!-- Stats & Info Row -->
+          <div class="stats-row" style="
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-border);
+">
+            <div style="
+    padding: var(--space-4);
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+  ">
+              <div style="
+      font-family: var(--font-heading);
+      font-weight: var(--weight-h1);
+      font-size: var(--size-h3);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    ">-48 lbs</div>
+              <div class="text-muted" style="font-size: var(--size-caption);">Total Weight Lost</div>
+            </div>
+
+            <div style="
+    padding: var(--space-4);
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+  ">
+              <div style="
+      font-family: var(--font-heading);
+      font-weight: var(--weight-h1);
+      font-size: var(--size-h3);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    ">24 wks</div>
+              <div class="text-muted" style="font-size: var(--size-caption);">Program Duration</div>
+            </div>
+
+            <div style="
+    padding: var(--space-4);
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+  ">
+              <div style="
+      font-family: var(--font-heading);
+      font-weight: var(--weight-h1);
+      font-size: var(--size-h3);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    ">19%</div>
+              <div class="text-muted" style="font-size: var(--size-caption);">Body Fat Reduced</div>
+            </div>
+
+            <div style="
+    padding: var(--space-4);
+    text-align: center;
+  ">
+              <div style="
+      font-family: var(--font-heading);
+      font-weight: var(--weight-h1);
+      font-size: var(--size-h3);
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    ">A1C ↓</div>
+              <div class="text-muted" style="font-size: var(--size-caption);">Pre-Diabetes Reversed</div>
+            </div>
+          </div>
+
+
+          <!-- Quote Row -->
+          <div style="
+  padding: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+">
+            <div style="color: var(--color-secondary); margin-bottom: var(--space-3);">
+              <i class="ph-fill ph-star"></i>
+              <i class="ph-fill ph-star"></i>
+              <i class="ph-fill ph-star"></i>
+              <i class="ph-fill ph-star"></i>
+              <i class="ph-fill ph-star"></i>
+            </div>
+            <p style="
+    font-size: var(--size-lead);
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+    max-width: 780px;
+    margin-inline: auto;
+    margin-bottom: var(--space-3);
+  ">
+              "I had tried everything for 10 years. SlimSync was the first program that treated my weight as a medical
+              condition, not a personal failure. The GLP-1 medication stopped the constant hunger and my doctor checked
+              in every single week. I genuinely feel like a different person."
+            </p>
+            <div style="margin-bottom: var(--space-4);">
+              <span style="font-weight: var(--weight-bold-inline); font-size: var(--size-label);">Amanda R., 42</span>
+              <span class="text-muted" style="font-size: var(--size-caption);">&nbsp;·&nbsp; Metabolic Reset Program
+                &nbsp;·&nbsp; Chicago, IL</span>
+            </div>
+            <a href="programs.html" class="btn btn-primary">
+              Start My Journey
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <style>
+      /* 768px and above — 4 columns in a single row */
+      .stats-row {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      /* 360px and below — 2x2 grid */
+      @media (max-width: 360px) {
+        .stats-row {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+
+        /* fix borders for 2x2 layout */
+        .stats-row>div:nth-child(2) {
+          border-right: none;
+        }
+
+        .stats-row>div:nth-child(1),
+        .stats-row>div:nth-child(2) {
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .stats-row>div:nth-child(3) {
+          border-right: 1px solid var(--color-border);
+        }
+
+        .stats-row>div:nth-child(4) {
+          border-right: none;
+        }
+      }
+    </style>
+    <style>
+      @media (max-width: 768px) {
+        .transformation-images {
+          grid-template-columns: 1fr !important;
+        }
+
+        .transformation-stats {
+          grid-template-columns: 1fr 1fr !important;
+        }
+
+        .transformation-quote {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .transformation-images img {
+          height: 300px !important;
+        }
+      }
+    </style>
+
+    <section style="padding: var(--section-padding);">
+      <div class="container">
+        <!-- Filters -->
+        <div class="filter-bar animate-fade-up delay-1">
+          <button class="filter-btn active" data-filter="all">All Results</button>
+          <button class="filter-btn" data-filter="glp1">GLP-1 Program</button>
+          <button class="filter-btn" data-filter="coaching">Elite Coaching</button>
+          <button class="filter-btn" data-filter="50plus">50+ lbs Lost</button>
+        </div>
+
+        <!-- Equal Height Grid — replacing masonry -->
+        <div class="results-equal-grid animate-fade-up delay-2">
+
+          <!-- Item 1 -->
+          <div class="results-card" data-category="glp1 50plus">
+            <div style="position: relative;">
+              <img src="assets/images/masonry-1.jpg" alt="Jessica transformation"
+                style="width: 100%; height: 340px; object-fit: cover; object-position: top; display: block; border-radius: var(--radius) var(--radius) 0 0;">
+              <span style="
+            position: absolute; top: var(--space-2); left: var(--space-2);
+            background: var(--color-primary); color: white;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            padding: 4px 12px; border-radius: 100px;
+          ">GLP-1 Program</span>
+            </div>
+            <div class="results-card-body">
+              <div class="d-flex justify-between align-center mb-2">
+                <h4 style="margin: 0;">Jessica</h4>
+                <span class="badge active">-52 lbs</span>
+              </div>
+              <p class="text-muted" style="font-size: var(--size-caption); margin-bottom: var(--space-3);">Metabolic
+                Reset • 32 Weeks • Age 39</p>
+              <p style="font-style: italic; margin-bottom: var(--space-3); font-size: var(--size-label);">
+                "I got my life back. The GLP-1 medication stopped the food noise completely. For the first time in years
+                I wasn't thinking about food every single minute."
+              </p>
+              <!-- Stats -->
+              <div style="
+            display: flex;
+            border-top: 1px solid var(--color-border);
+            padding-top: var(--space-3);
+            margin-top: auto;
+            gap: var(--space-2);
+          ">
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    52</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">lbs Lost</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    32</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Weeks</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    22%</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Body Fat ↓</div>
+                </div>
+              </div>
+              <div style="color: var(--color-secondary); margin-top: var(--space-3); text-align: center;">
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="results-card" data-category="coaching">
+            <div style="position: relative;">
+              <img src="assets/images/masonry-2.jpg" alt="David transformation"
+                style="width: 100%; height: 340px; object-fit: cover; object-position: top; display: block; border-radius: var(--radius) var(--radius) 0 0;">
+              <span style="
+            position: absolute; top: var(--space-2); left: var(--space-2);
+            background: var(--color-primary); color: white;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            padding: 4px 12px; border-radius: 100px;
+          ">Elite Coaching</span>
+            </div>
+            <div class="results-card-body">
+              <div class="d-flex justify-between align-center mb-2">
+                <h4 style="margin: 0;">David</h4>
+                <span class="badge active">-28 lbs</span>
+              </div>
+              <p class="text-muted" style="font-size: var(--size-caption); margin-bottom: var(--space-3);">Elite
+                Coaching • 16 Weeks • Age 44</p>
+              <p style="font-style: italic; margin-bottom: var(--space-3); font-size: var(--size-label);">
+                "The daily check-ins kept me accountable like nothing else ever has. This isn't a diet — it's a complete
+                re-education of how I think about food and my body."
+              </p>
+              <div style="
+            display: flex;
+            border-top: 1px solid var(--color-border);
+            padding-top: var(--space-3);
+            margin-top: auto;
+            gap: var(--space-2);
+          ">
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    28</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">lbs Lost</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    16</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Weeks</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    12%</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Body Fat ↓</div>
+                </div>
+              </div>
+              <div style="color: var(--color-secondary); margin-top: var(--space-3); text-align: center;">
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="results-card" data-category="glp1">
+            <div style="position: relative;">
+              <img src="assets/images/masonry-3.jpg" alt="Maria transformation"
+                style="width: 100%; height: 340px; object-fit: cover; object-position: top; display: block; border-radius: var(--radius) var(--radius) 0 0;">
+              <span style="
+            position: absolute; top: var(--space-2); left: var(--space-2);
+            background: var(--color-primary); color: white;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            padding: 4px 12px; border-radius: 100px;
+          ">GLP-1 Program</span>
+            </div>
+            <div class="results-card-body">
+              <div class="d-flex justify-between align-center mb-2">
+                <h4 style="margin: 0;">Maria</h4>
+                <span class="badge active">-35 lbs</span>
+              </div>
+              <p class="text-muted" style="font-size: var(--size-caption); margin-bottom: var(--space-3);">Metabolic
+                Reset • 20 Weeks • Age 41</p>
+              <p style="font-style: italic; margin-bottom: var(--space-3); font-size: var(--size-label);">
+                "Clinical support makes all the difference. My physician adjusted my dosage every few weeks and I never
+                once felt alone in this process. Truly life-changing."
+              </p>
+              <div style="
+            display: flex;
+            border-top: 1px solid var(--color-border);
+            padding-top: var(--space-3);
+            margin-top: auto;
+            gap: var(--space-2);
+          ">
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    35</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">lbs Lost</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    20</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Weeks</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4); line-height: 1;">
+                    15%</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Body Fat ↓</div>
+                </div>
+              </div>
+              <div style="color: var(--color-secondary); margin-top: var(--space-3); text-align: center;">
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* Equal height grid replacing masonry */
+      .results-equal-grid {
+        display: flex !important;
+        flex-direction: row;
+        align-items: stretch !important;
+        gap: var(--space-4);
+      }
+
+      /* Card stretches full height */
+      .results-card {
+        flex: 1;
+        background: var(--color-surface);
+        border-radius: var(--radius);
+        border: 1px solid var(--color-border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform var(--transition), box-shadow var(--transition);
+      }
+
+      .results-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      /* Body grows to fill remaining height */
+      .results-card-body {
+        padding: var(--space-4);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      /* Stats always pinned to bottom */
+      .results-card-body>div:nth-last-child(2) {
+        margin-top: auto;
+      }
+
+      @media (max-width: 1023px) and (min-width: 768px) {
+        .results-equal-grid {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .results-card {
+          flex: 0 1 calc(50% - (var(--space-4) / 2));
+          max-width: calc(50% - (var(--space-4) / 2));
+        }
+      }
+
+      @media (max-width: 767px) {
+        .results-equal-grid {
+          flex-direction: column;
+        }
+        .results-card {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.results-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        items.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+/* 
+ * SlimSync - RTL Overrides
+ */
+
+[dir="rtl"] {
+  /* Logical properties fallback / specific overrides */
+  direction: rtl;
+}
+
+[dir="rtl"] .nav-actions,
+[dir="rtl"] .drawer-actions {
+  flex-direction: row-reverse; /* if we want to mirror the order */
+}
+
+/* Ensure padding and margins that use inline logic are properly supported or flipped */
+[dir="rtl"] .btn i,
+[dir="rtl"] .btn svg {
+  margin-inline-start: 0;
+  margin-inline-end: var(--space-1);
+}
+
+/* Timeline specific RTL */
+[dir="rtl"] .timeline-step::after {
+  right: 50%;
+  left: auto;
+}
+
+[dir="rtl"] .sidebar {
+  border-right: none;
+  border-left: 1px solid var(--color-border);
+}
+
+/* Other general mirrors */
+[dir="rtl"] .text-start { text-align: right; }
+[dir="rtl"] .text-end { text-align: left; }

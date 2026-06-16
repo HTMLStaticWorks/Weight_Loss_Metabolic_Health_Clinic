@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | SlimSync</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+    @media (max-width: 767px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    /* Small mobile perfect centering */
+    @media (max-width: 360px) {
+      .contact-grid { gap: var(--space-4); }
+      .form-group, .btn, h2, p { text-align: center; }
+      .form-control { text-align: center; }
+      .contact-info-card { align-items: center; text-align: center; }
+    }
+    .contact-info-card {
+      background: var(--color-surface);
+      padding: var(--space-4);
+      border-radius: var(--radius);
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <i class="ph ph-activity"></i>
+        <span>Slim</span>Sync
+      </a>
+      
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="programs.html" class="nav-link">Programs</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="coaching.html" class="nav-link">Coaching</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <i class="ph ph-arrows-left-right"></i>
+        </button>
+        <a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <aside class="nav-drawer">
+    <button class="icon-btn drawer-close" aria-label="Close Drawer">
+      <i class="ph ph-x"></i>
+    </button>
+    
+    <div class="drawer-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="home2.html" class="nav-link">Home 2</a>
+      <a href="programs.html" class="nav-link">Programs</a>
+      <a href="results.html" class="nav-link">Results</a>
+      <a href="coaching.html" class="nav-link">Coaching</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+
+    <div class="drawer-actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+        <i class="ph ph-moon"></i>
+      </button>
+      <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+        <i class="ph ph-arrows-left-right"></i>
+      </button>
+      <a href="login.html" class="btn btn-primary w-full">Login</a>
+    </div>
+  </aside>
+
+  <main style="padding-top: 80px;">
+    <!-- Page Hero -->
+    <section class="page-hero" style="padding: var(--space-12) 0; text-align: center; background: var(--color-surface);">
+      <div class="container animate-fade-up">
+        <h1>Connect With SlimSync</h1>
+        <p class="text-muted" style="font-size: var(--size-lead); max-width: 600px; margin: var(--space-4) auto 0;">Have questions about our clinical programs or coaching? We are here to help.</p>
+      </div>
+    </section>
+
+    <section style="padding: var(--section-padding);">
+      <div class="container">
+        <div class="contact-grid">
+          
+          <!-- Contact Form -->
+          <div class="animate-fade-up">
+            <h2 style="margin-bottom: var(--space-2);">Get in Touch</h2>
+            <p class="text-muted mb-6">Our clinical team is here to answer any questions.</p>
+            
+            <form id="contactForm" onsubmit="handleContact(event)" action="https://formspree.io/f/placeholder" method="POST">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="name" class="form-control" required>
+                <div class="error-text" id="nameError">Name is required.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="email" class="form-control" required>
+                <div class="error-text" id="emailError">Please enter a valid email.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea id="message" class="form-control" rows="4" required></textarea>
+                <div class="error-text" id="messageError">Message cannot be empty.</div>
+              </div>
+              <button type="submit" class="btn btn-primary w-full">Send Message</button>
+              <div id="formSuccess" style="display:none; color: var(--color-success); margin-top: var(--space-2); text-align: center;">Message sent successfully!</div>
+            </form>
+          </div>
+
+          <!-- Contact Info & Socials -->
+          <div class="animate-fade-up delay-1">
+            <div class="contact-info-card">
+              <h4 style="margin:0;"><i class="ph ph-map-pin" style="color: var(--color-primary); margin-right: 8px;"></i> Clinic Location</h4>
+              <p class="text-muted">123 Wellness Blvd, Suite 400<br>Metropolis, NY 10001</p>
+            </div>
+            <div class="contact-info-card">
+              <h4 style="margin:0;"><i class="ph ph-phone" style="color: var(--color-primary); margin-right: 8px;"></i> Contact Details</h4>
+              <p class="text-muted">+1 (800) 555-0199<br>hello@slimsync.clinic</p>
+            </div>
+            <div class="contact-info-card">
+              <h4 style="margin:0;"><i class="ph ph-share-network" style="color: var(--color-primary); margin-right: 8px;"></i> Follow Us</h4>
+              <div style="display: flex; gap: var(--space-3); margin-top: var(--space-2);">
+                <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-bg); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-primary); transition: all var(--transition);" onmouseover="this.style.background='var(--color-primary)'; this.style.color='white'" onmouseout="this.style.background='var(--color-bg)'; this.style.color='var(--color-primary)'">
+                  <i class="ph ph-instagram-logo" style="font-size: 20px;"></i>
+                </a>
+                <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-bg); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-primary); transition: all var(--transition);" onmouseover="this.style.background='var(--color-primary)'; this.style.color='white'" onmouseout="this.style.background='var(--color-bg)'; this.style.color='var(--color-primary)'">
+                  <i class="ph ph-facebook-logo" style="font-size: 20px;"></i>
+                </a>
+                <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-bg); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-primary); transition: all var(--transition);" onmouseover="this.style.background='var(--color-primary)'; this.style.color='white'" onmouseout="this.style.background='var(--color-bg)'; this.style.color='var(--color-primary)'">
+                  <i class="ph ph-x-logo" style="font-size: 20px;"></i>
+                </a>
+                <a href="#" style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-bg); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-primary); transition: all var(--transition);" onmouseover="this.style.background='var(--color-primary)'; this.style.color='white'" onmouseout="this.style.background='var(--color-bg)'; this.style.color='var(--color-primary)'">
+                  <i class="ph ph-linkedin-logo" style="font-size: 20px;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section (Separate) -->
+    <section style="padding: 0 0 var(--section-padding) 0;">
+      <div class="container animate-fade-up">
+        <div style="width: 100%; height: 400px; background: var(--color-surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border);">
+          <iframe width="100%" height="100%" frameborder="0" style="border:0; filter: var(--map-filter);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=123%20Wellness%20Blvd,%20New%20York,%20NY%2010001+(SlimSync%20Clinic)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="assets/js/main.js"></script>
+  <script>
+    function handleContact(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      let isValid = true;
+      
+      if (!emailRegex.test(email)) {
+        document.getElementById('email').classList.add('error');
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('email').classList.remove('error');
+        document.getElementById('emailError').style.display = 'none';
+      }
+      
+      if(isValid) {
+        document.getElementById('formSuccess').style.display = 'block';
+        e.target.reset();
+      }
+    }
+  </script>
+</body>
+</html>

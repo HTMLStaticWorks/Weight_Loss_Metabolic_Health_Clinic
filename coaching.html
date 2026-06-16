@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Coaching | SlimSync</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+
+<body>
+  <!-- Backdrop for mobile menu -->
+  <div class="backdrop"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <i class="ph ph-activity"></i>
+        <span>Slim</span>Sync
+      </a>
+
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="programs.html" class="nav-link">Programs</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="coaching.html" class="nav-link active">Coaching</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+          <i class="ph ph-arrows-left-right"></i>
+        </button>
+        <a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <aside class="nav-drawer">
+    <button class="icon-btn drawer-close" aria-label="Close Drawer">
+      <i class="ph ph-x"></i>
+    </button>
+
+    <div class="drawer-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="home2.html" class="nav-link">Home 2</a>
+      <a href="programs.html" class="nav-link">Programs</a>
+      <a href="results.html" class="nav-link">Results</a>
+      <a href="coaching.html" class="nav-link active">Coaching</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+
+    <div class="drawer-actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle Theme">
+        <i class="ph ph-moon"></i>
+      </button>
+      <button class="icon-btn rtl-toggle" aria-label="Toggle RTL">
+        <i class="ph ph-arrows-left-right"></i>
+      </button>
+      <a href="login.html" class="btn btn-primary w-full">Login</a>
+    </div>
+  </aside>
+
+  <main style="padding-top: 80px;">
+    <section class="page-hero" style="padding: var(--space-12) 0; text-align: center;">
+      <div class="container animate-fade-up">
+        <span class="badge active mb-3">1-on-1 Support</span>
+        <h1>Your Metabolic Co-Pilot</h1>
+        <p class="text-muted" style="font-size: var(--size-lead); max-width: 600px; margin: var(--space-4) auto 0;">
+          Navigate your journey with dedicated clinical coaches who monitor your progress daily.</p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section style="padding: var(--section-padding); background: var(--color-surface);">
+      <div class="container">
+        <div class="card-grid animate-fade-up delay-1" style="border: none;">
+          <div class="text-center p-4">
+            <i class="ph ph-chat-circle-dots"
+              style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+            <h4>Daily Check-ins</h4>
+            <p class="text-muted">Direct messaging with your coach via the patient dashboard.</p>
+          </div>
+          <div class="text-center p-4">
+            <i class="ph ph-fork-knife"
+              style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+            <h4>Meal Structuring</h4>
+            <p class="text-muted">Custom macro planning adapted to your medication and goals.</p>
+          </div>
+          <div class="text-center p-4">
+            <i class="ph ph-chart-line-up"
+              style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+            <h4>Progress Tracking</h4>
+            <p class="text-muted">Visual charts and streak counting to keep you motivated.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coach Profiles -->
+    <section style="padding: var(--section-padding);">
+      <div class="container">
+        <div class="section-header animate-fade-up delay-2">
+          <h2>Meet the Experts</h2>
+        </div>
+        <div class="card-grid animate-fade-up delay-3">
+
+          <!-- Coach 1 -->
+          <div class="card p-0">
+            <img src="assets/images/doctor-11.jpg" alt="Dr. Elena Rostova"
+              style="border-radius: var(--radius) var(--radius) 0 0; height: 300px; object-fit: cover; object-position: top; width: 100%;">
+            <div style="padding: var(--space-4); text-align: center;">
+              <h3 style="margin-bottom: var(--space-1);">Dr. Elena Rostova</h3>
+              <p class="text-muted mb-3">Endocrinologist & Head</p>
+              <div class="d-flex justify-center gap-2 mb-4">
+                <i class="ph-fill ph-star" style="color: var(--color-secondary);"></i>
+                <span class="text-muted">4.9 (120+ Reviews)</span>
+              </div>
+              <a href="#" class="btn btn-outline w-full">View Availability</a>
+            </div>
+          </div>
+
+          <!-- Coach 2 -->
+          <div class="card p-0">
+            <img src="assets/images/doctor-22.jpg" alt="Marcus Chen, RD"
+              style="border-radius: var(--radius) var(--radius) 0 0; height: 300px; object-fit: cover; object-position: top; width: 100%;">
+            <div style="padding: var(--space-4); text-align: center;">
+              <h3 style="margin-bottom: var(--space-1);">Marcus Chen, RD</h3>
+              <p class="text-muted mb-3">Clinical Dietitian</p>
+              <div class="d-flex justify-center gap-2 mb-4">
+                <i class="ph-fill ph-star" style="color: var(--color-secondary);"></i>
+                <span class="text-muted">5.0 (85+ Reviews)</span>
+              </div>
+              <a href="#" class="btn btn-outline w-full">View Availability</a>
+            </div>
+          </div>
+
+          <!-- Coach 3 — unchanged -->
+          <div class="card p-0">
+            <img
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Sarah Jenkins, RN"
+              style="border-radius: var(--radius) var(--radius) 0 0; height: 300px; object-fit: cover; object-position: top; width: 100%;">
+            <div style="padding: var(--space-4); text-align: center;">
+              <h3 style="margin-bottom: var(--space-1);">Sarah Jenkins, RN</h3>
+              <p class="text-muted mb-3">Nurse Practitioner</p>
+              <div class="d-flex justify-center gap-2 mb-4">
+                <i class="ph-fill ph-star" style="color: var(--color-secondary);"></i>
+                <span class="text-muted">4.8 (200+ Reviews)</span>
+              </div>
+              <a href="#" class="btn btn-outline w-full">View Availability</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section style="padding: var(--section-padding); background: var(--color-surface);">
+      <div class="container animate-fade-up">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question">How often will I communicate with my coach? <i class="ph ph-caret-down"></i></button>
+            <div class="faq-answer">
+              <p>You can message your coach anytime through your patient dashboard. Coaches check in daily Monday through Friday to answer questions, review your logs, and provide guidance.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What credentials do the coaches have? <i class="ph ph-caret-down"></i></button>
+            <div class="faq-answer">
+              <p>Our coaching team consists of registered dietitians (RD), certified nutritionists, and registered nurses (RN) who specialize in endocrine health and weight management.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Is coaching included in all SlimSync programs? <i class="ph ph-caret-down"></i></button>
+            <div class="faq-answer">
+              <p>Continuous 1-on-1 coaching is included in our Metabolic Reset and Elite Coaching programs. The Starter plan provides clinical medical oversight but does not include daily nutritional coaching.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlimSync | Clinical Weight Loss & Metabolic Health</title>
+  <meta name="description"
+    content="Precision metabolic health and modern clinical wellness programs designed for lasting weight loss.">
+
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    /* Split Screen Hero specific styles */
+    .hero-split-section {
+      padding: 120px 0 60px;
+    }
+
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-split-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .hero-split-content {
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .stat-counter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-box h3 {
+      font-size: var(--size-h2);
+      color: var(--color-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-split-section {
+        padding: 100px 0 40px;
+      }
+
+      .hero-split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-split-img {
+        height: 600px;
+        order: 2;
+      }
+
+      .hero-split-content {
+        padding: var(--space-6);
+        order: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-split-img {
+        height: 480px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-split-img {
+        height: 320px;
+      }
+    }
+
+    /* Difference Section Hover Styles & Colors */
+    :root {
+      --diff-text: #0a0a0a;
+      --diff-overlay: linear-gradient(to top, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0) 100%);
+      --diff-badge-color: #ffffff;
+      --diff-badge-bg: var(--color-primary);
+      --diff-badge-border: transparent;
+    }
+
+    [data-theme="dark"] {
+      --diff-text: #f5f5f5;
+      --diff-overlay: linear-gradient(to top, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.80) 50%, rgba(0, 0, 0, 0.20) 100%);
+      --diff-badge-color: #ffffff;
+      --diff-badge-bg: var(--color-primary);
+      --diff-badge-border: transparent;
+    }
+
+    .difference-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-bg);
+    }
+
+    .difference-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="backdrop"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <i class="ph ph-activity"></i>
+        <span>Slim</span>Sync
+      </a>
+
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link active">Home 2</a>
+        <a href="programs.html" class="nav-link">Programs</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="coaching.html" class="nav-link">Coaching</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><i class="ph ph-moon"></i></button>
+        <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><i class="ph ph-arrows-left-right"></i></button>
+        <a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <aside class="nav-drawer">
+    <button class="icon-btn drawer-close" aria-label="Close Drawer"><i class="ph ph-x"></i></button>
+
+    <div class="drawer-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="home2.html" class="nav-link active">Home 2</a>
+      <a href="programs.html" class="nav-link">Programs</a>
+      <a href="results.html" class="nav-link">Results</a>
+      <a href="coaching.html" class="nav-link">Coaching</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+
+    <div class="drawer-actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle Theme"><i class="ph ph-moon"></i></button>
+      <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><i class="ph ph-arrows-left-right"></i></button>
+      <a href="login.html" class="btn btn-primary w-full">Login</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- Split Screen Hero -->
+    <section class="hero-split-section">
+      <div class="container">
+        <div class="hero-split">
+          <img src="assets/images/home2-hero.jpg" alt="Clinical consultation" class="hero-split-img animate-fade-up">
+          <div class="hero-split-content">
+            <span class="badge active animate-fade-up" style="margin-bottom: var(--space-3); align-self: center;">Your
+              New Baseline</span>
+            <h1 class="animate-fade-up delay-1">Medical Science Meets Daily Wellness</h1>
+            <p class="animate-fade-up delay-2 text-muted"
+              style="font-size: var(--size-lead); margin-bottom: var(--space-4);">
+              Break through weight loss plateaus with clinically proven GLP-1 programs, comprehensive labs, and
+              dedicated
+              1-on-1 coaching.
+            </p>
+            <div class="d-flex gap-4 animate-fade-up delay-3" style="align-items: center; justify-content: center;">
+              <a href="programs.html" class="btn btn-primary">Start Evaluation</a>
+              <a href="results.html" class="btn btn-text">View Clinical Data <i class="ph ph-arrow-right"></i></a>
+            </div>
+
+            <div class="stat-counter-grid animate-fade-up delay-3">
+              <div class="stat-box">
+                <h3 class="counter" data-target="95">0</h3>
+                <p class="text-muted">Success Rate (%)</p>
+              </div>
+              <div class="stat-box">
+                <h3 class="counter" data-target="15000">0</h3>
+                <p class="text-muted">Patients Treated</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clinical Team Spotlight -->
+    <section style="padding: var(--section-padding); background: var(--color-surface);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>Meet the Clinical Team</h2>
+          <p>Board-certified physicians and specialists dedicated to your metabolic transformation.</p>
+        </div>
+
+        <div class="card-grid animate-fade-up delay-1"
+          style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+
+          <!-- Doctor 1 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/doctor-1.jpg" alt="Dr. Elena Rostova"
+                style="width: 100%; height: 320px; object-fit: cover; object-position: top; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-2);
+            background: var(--color-primary); color: white;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            padding: 4px 12px; border-radius: 100px;
+          ">Endocrinologist</div>
+            </div>
+            <div style="padding: var(--space-4); width: 100%; text-align: left;">
+              <h4 style="margin: 0 0 4px;">Dr. Elena Rostova</h4>
+              <p class="text-muted" style="font-size: var(--size-label); margin-bottom: var(--space-3);">Head of
+                Clinical Programs</p>
+              <p style="font-size: var(--size-label); color: var(--color-text); margin-bottom: var(--space-3);">
+                15+ years specializing in metabolic disorders and GLP-1 therapy. Former faculty at Johns Hopkins School
+                of Medicine.
+              </p>
+              <div style="
+            display: flex; gap: var(--space-2);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-border);
+          ">
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    15+</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Years Exp.</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    4.9</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Patient Rating</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    500+</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Patients</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Doctor 2 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/doctor-2.jpg" alt="Marcus Chen, RD"
+                style="width: 100%; height: 320px; object-fit: cover; object-position: top; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-2);
+            background: var(--color-primary); color: white;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            padding: 4px 12px; border-radius: 100px;
+          ">Clinical Dietitian</div>
+            </div>
+            <div style="padding: var(--space-4); width: 100%; text-align: left;">
+              <h4 style="margin: 0 0 4px;">Marcus Chen, RD</h4>
+              <p class="text-muted" style="font-size: var(--size-label); margin-bottom: var(--space-3);">Nutrition &
+                Macro Specialist</p>
+              <p style="font-size: var(--size-label); color: var(--color-text); margin-bottom: var(--space-3);">
+                Registered dietitian with a decade of experience designing clinical meal protocols for GLP-1 patients.
+              </p>
+              <div style="
+            display: flex; gap: var(--space-2);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-border);
+          ">
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    10+</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Years Exp.</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    5.0</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Patient Rating</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    300+</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Patients</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Doctor 3 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/doctor-3.jpg" alt="Sarah Jenkins, RN"
+                style="width: 100%; height: 320px; object-fit: cover; object-position: top; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-2);
+            background: var(--color-primary); color: white;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            padding: 4px 12px; border-radius: 100px;
+          ">Nurse Practitioner</div>
+            </div>
+            <div style="padding: var(--space-4); width: 100%; text-align: left;">
+              <h4 style="margin: 0 0 4px;">Sarah Jenkins, RN</h4>
+              <p class="text-muted" style="font-size: var(--size-label); margin-bottom: var(--space-3);">Patient Care
+                Coordinator</p>
+              <p style="font-size: var(--size-label); color: var(--color-text); margin-bottom: var(--space-3);">
+                Specialized in chronic weight management and daily patient monitoring across telehealth and in-clinic
+                programs.
+              </p>
+              <div style="
+            display: flex; gap: var(--space-2);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-border);
+          ">
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    12+</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Years Exp.</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    4.8</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Patient Rating</div>
+                </div>
+                <div style="width: 1px; background: var(--color-border);"></div>
+                <div style="flex: 1; text-align: center;">
+                  <div
+                    style="font-family: var(--font-heading); font-weight: var(--weight-h2); color: var(--color-primary); font-size: var(--size-h4);">
+                    700+</div>
+                  <div class="text-muted" style="font-size: var(--size-caption);">Patients</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Quote Block -->
+    <section style="padding: var(--section-padding); background: var(--color-primary);">
+      <div class="container">
+        <div style="max-width: 860px; margin: 0 auto; text-align: center;" class="animate-fade-up">
+
+          <!-- Quote icon -->
+          <i class="ph ph-quotes"
+            style="font-size: 48px; color: rgba(255,255,255,0.3); margin-bottom: var(--space-4); display: block;"></i>
+
+          <p style="
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-family: var(--font-heading);
+        font-weight: var(--weight-h3);
+        color: white;
+        line-height: 1.5;
+        margin-bottom: var(--space-6);
+        font-style: italic;
+      ">
+            "After years of failed diets and programs that promised everything, SlimSync was the first place that
+            actually looked at my biology. Within 6 months I had lost 50 pounds and completely reversed my pre-diabetes
+            markers."
+          </p>
+
+          <!-- Divider -->
+          <div style="width: 48px; height: 2px; background: rgba(255,255,255,0.4); margin: 0 auto var(--space-4);">
+          </div>
+
+          <!-- Author -->
+          <div>
+            <div style="
+          font-family: var(--font-heading);
+          font-weight: var(--weight-h4);
+          color: white;
+          font-size: var(--size-lead);
+          margin-bottom: 4px;
+        ">Rachel K.</div>
+            <div style="color: rgba(255,255,255,0.65); font-size: var(--size-label);">
+              Metabolic Reset Program &nbsp;·&nbsp; Lost 50 lbs in 24 Weeks
+            </div>
+          </div>
+
+          <!-- Stars -->
+          <div style="color: var(--color-secondary); margin-top: var(--space-4); font-size: 1.2rem;">
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+            <i class="ph-fill ph-star"></i>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Conditions We Treat -->
+    <section style="padding: var(--section-padding);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>Conditions We Treat</h2>
+          <p>SlimSync's clinical programs are designed to address the root metabolic causes behind weight gain.</p>
+        </div>
+
+        <div class="conditions-grid card-grid animate-fade-up delay-1">
+
+          <!-- Condition 1 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/condition-1.jpg" alt="Obesity Treatment"
+                style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,110,110,0.7) 0%, transparent 60%);
+            border-radius: var(--radius) var(--radius) 0 0;
+          "></div>
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-1);
+          ">
+                <i class="ph ph-barbell" style="font-size: 20px; color: white;"></i>
+                <span
+                  style="color: white; font-weight: var(--weight-bold-inline); font-size: var(--size-label);">Obesity</span>
+              </div>
+            </div>
+            <div style="padding: var(--space-3); text-align: left;">
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Clinically supervised GLP-1 therapy targeting the hormonal root causes of persistent weight gain.
+              </p>
+            </div>
+          </div>
+
+          <!-- Condition 2 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/condition-2.jpg" alt="Type 2 Diabetes Risk"
+                style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,110,110,0.7) 0%, transparent 60%);
+            border-radius: var(--radius) var(--radius) 0 0;
+          "></div>
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-1);
+          ">
+                <i class="ph ph-drop" style="font-size: 20px; color: white;"></i>
+                <span style="color: white; font-weight: var(--weight-bold-inline); font-size: var(--size-label);">Type 2
+                  Diabetes Risk</span>
+              </div>
+            </div>
+            <div style="padding: var(--space-3); text-align: left;">
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Reverse pre-diabetes markers through metabolic reset protocols backed by clinical lab monitoring.
+              </p>
+            </div>
+          </div>
+
+          <!-- Condition 3 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/condition-3.jpg" alt="Metabolic Syndrome"
+                style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,110,110,0.7) 0%, transparent 60%);
+            border-radius: var(--radius) var(--radius) 0 0;
+          "></div>
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-1);
+          ">
+                <i class="ph ph-heartbeat" style="font-size: 20px; color: white;"></i>
+                <span
+                  style="color: white; font-weight: var(--weight-bold-inline); font-size: var(--size-label);">Metabolic
+                  Syndrome</span>
+              </div>
+            </div>
+            <div style="padding: var(--space-3); text-align: left;">
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Address high blood pressure, insulin resistance, and abnormal cholesterol through integrated care.
+              </p>
+            </div>
+          </div>
+
+          <!-- Condition 4 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/condition-4.jpg" alt="PCOS"
+                style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,110,110,0.7) 0%, transparent 60%);
+            border-radius: var(--radius) var(--radius) 0 0;
+          "></div>
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-1);
+          ">
+                <i class="ph ph-flower" style="font-size: 20px; color: white;"></i>
+                <span
+                  style="color: white; font-weight: var(--weight-bold-inline); font-size: var(--size-label);">PCOS</span>
+              </div>
+            </div>
+            <div style="padding: var(--space-3); text-align: left;">
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Hormone-aware weight loss protocols specifically tailored for patients managing polycystic ovary
+                syndrome.
+              </p>
+            </div>
+          </div>
+
+          <!-- Condition 5 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/condition-5.jpg" alt="Thyroid Related Weight Gain"
+                style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,110,110,0.7) 0%, transparent 60%);
+            border-radius: var(--radius) var(--radius) 0 0;
+          "></div>
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-1);
+          ">
+                <i class="ph ph-thermometer" style="font-size: 20px; color: white;"></i>
+                <span
+                  style="color: white; font-weight: var(--weight-bold-inline); font-size: var(--size-label);">Thyroid
+                  Weight Gain</span>
+              </div>
+            </div>
+            <div style="padding: var(--space-3); text-align: left;">
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Thyroid-aware programs that work with your endocrine system, not against it, for sustainable fat loss.
+              </p>
+            </div>
+          </div>
+
+          <!-- Condition 6 -->
+          <div class="card p-0">
+            <div style="position: relative;">
+              <img src="assets/images/condition-6.jpg" alt="Stress Related Weight Gain"
+                style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0;">
+              <div style="
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,110,110,0.7) 0%, transparent 60%);
+            border-radius: var(--radius) var(--radius) 0 0;
+          "></div>
+              <div style="
+            position: absolute; bottom: var(--space-2); left: var(--space-3);
+            display: flex; align-items: center; gap: var(--space-1);
+          ">
+                <i class="ph ph-brain" style="font-size: 20px; color: white;"></i>
+                <span
+                  style="color: white; font-weight: var(--weight-bold-inline); font-size: var(--size-label);">Stress-Related
+                  Weight Gain</span>
+              </div>
+            </div>
+            <div style="padding: var(--space-3); text-align: left;">
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Cortisol and stress-driven weight gain addressed through combined clinical and behavioural coaching.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- The SlimSync Difference -->
+    <section style="padding: var(--section-padding); background: var(--color-surface);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>The SlimSync Difference</h2>
+          <p>Traditional diets fight your biology. We work with it.</p>
+        </div>
+
+        <div class="difference-grid animate-fade-up delay-1">
+
+          <!-- Left: Traditional Diet -->
+          <div class="difference-card">
+            <img src="assets/images/difference-before.jpg" alt="Traditional diet frustration"
+              style="width: 100%; height: 480px; object-fit: cover; display: block; filter: grayscale(40%);">
+            <div style="
+          position: absolute; inset: 0;
+          background: var(--diff-overlay);
+        "></div>
+            <div style="
+          position: absolute; bottom: var(--space-4); left: var(--space-4); right: var(--space-4);
+          display: flex; flex-direction: column; align-items: center; text-align: center;
+        ">
+              <div style="
+            display: inline-block;
+            background: var(--diff-badge-bg);
+            border: 1px solid var(--diff-badge-border);
+            color: var(--diff-badge-color);
+            padding: 4px 14px; border-radius: 100px;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            margin-bottom: var(--space-2);
+          ">Traditional Diets</div>
+              <h4 style="color: var(--diff-text); margin: 0 0 var(--space-2);">Fighting Your Own Biology</h4>
+              <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                <div
+                  style="display: flex; align-items: center; gap: 8px; color: var(--diff-text); font-size: var(--size-label);">
+                  <i class="ph ph-x-circle" style="color: #10b981; font-size: 18px; flex-shrink: 0;"></i>
+                  Willpower-based, unsustainable
+                </div>
+                <div
+                  style="display: flex; align-items: center; gap: 8px; color: var(--diff-text); font-size: var(--size-label);">
+                  <i class="ph ph-x-circle" style="color: #10b981; font-size: 18px; flex-shrink: 0;"></i>
+                  No medical supervision
+                </div>
+                <div
+                  style="display: flex; align-items: center; gap: 8px; color: var(--diff-text); font-size: var(--size-label);">
+                  <i class="ph ph-x-circle" style="color: #10b981; font-size: 18px; flex-shrink: 0;"></i>
+                  Ignores hormones & metabolism
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Center: VS divider -->
+          <div style="
+        display: flex; align-items: center; justify-content: center;
+        flex-direction: column; gap: var(--space-2);
+      ">
+            <div style="flex: 1; width: 2px; background: var(--color-border);"></div>
+            <div style="
+          width: 48px; height: 48px; border-radius: 50%;
+          background: var(--color-primary); color: white;
+          display: flex; align-items: center; justify-content: center;
+          font-family: var(--font-heading); font-weight: var(--weight-h2);
+          font-size: var(--size-label); flex-shrink: 0;
+        ">VS</div>
+            <div style="flex: 1; width: 2px; background: var(--color-border);"></div>
+          </div>
+
+          <!-- Right: SlimSync -->
+          <div class="difference-card">
+            <img src="assets/images/difference-after.jpg" alt="SlimSync clinical success"
+              style="width: 100%; height: 480px; object-fit: cover; display: block;">
+            <div style="
+          position: absolute; inset: 0;
+          background: var(--diff-overlay);
+        "></div>
+            <div style="
+          position: absolute; bottom: var(--space-4); left: var(--space-4); right: var(--space-4);
+          display: flex; flex-direction: column; align-items: center; text-align: center;
+        ">
+              <div style="
+            display: inline-block;
+            background: var(--diff-badge-bg);
+            border: 1px solid var(--diff-badge-border);
+            color: var(--diff-badge-color);
+            padding: 4px 14px; border-radius: 100px;
+            font-size: var(--size-caption); font-weight: var(--weight-bold-inline);
+            margin-bottom: var(--space-2);
+          ">SlimSync Clinical</div>
+              <h4 style="color: var(--diff-text); margin: 0 0 var(--space-2);">Working With Your Biology</h4>
+              <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                <div
+                  style="display: flex; align-items: center; gap: 8px; color: var(--diff-text); font-size: var(--size-label);">
+                  <i class="ph ph-check-circle" style="color: #10b981; font-size: 18px; flex-shrink: 0;"></i>
+                  Clinically proven GLP-1 therapy
+                </div>
+                <div
+                  style="display: flex; align-items: center; gap: 8px; color: var(--diff-text); font-size: var(--size-label);">
+                  <i class="ph ph-check-circle" style="color: #10b981; font-size: 18px; flex-shrink: 0;"></i>
+                  Board-certified physician oversight
+                </div>
+                <div
+                  style="display: flex; align-items: center; gap: 8px; color: var(--diff-text); font-size: var(--size-label);">
+                  <i class="ph ph-check-circle" style="color: #10b981; font-size: 18px; flex-shrink: 0;"></i>
+                  Personalised to your lab results
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .difference-grid {
+        display: grid;
+        grid-template-columns: 1fr 60px 1fr;
+        gap: var(--space-4);
+        align-items: stretch;
+      }
+
+      @media (max-width: 768px) {
+        .difference-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .difference-grid>div:nth-child(2) {
+          flex-direction: row;
+          height: 48px;
+        }
+
+        .difference-grid>div:nth-child(2)>div:first-child,
+        .difference-grid>div:nth-child(2)>div:last-child {
+          width: 100%;
+          height: 2px;
+          flex: 1;
+        }
+      }
+    </style>
+
+    <!-- Inside the Clinic -->
+    <section style="padding: var(--section-padding);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>Inside the Clinic</h2>
+          <p>A premium clinical environment designed around your comfort, privacy, and care.</p>
+        </div>
+
+        <div class="clinic-grid animate-fade-up delay-1">
+
+          <!-- Image 1: Consultation Room -->
+          <div class="clinic-card">
+            <div class="clinic-card-img-wrapper">
+              <img src="assets/images/clinic-consultation.jpg" alt="Consultation Room"
+                style="width: 100%; height: 320px; object-fit: cover; display: block;">
+            </div>
+            <div style="text-align: center;">
+              <h4 style="margin: 0 0 4px;">Consultation Rooms</h4>
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                Private, fully equipped rooms designed for focused one-on-one clinical care.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image 2: Lab Area -->
+          <div class="clinic-card">
+            <div class="clinic-card-img-wrapper">
+              <img src="assets/images/clinic-lab.jpg" alt="Lab Area"
+                style="width: 100%; height: 320px; object-fit: cover; display: block;">
+            </div>
+            <div style="text-align: center;">
+              <h4 style="margin: 0 0 4px;">In-House Laboratory</h4>
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                On-site lab panels processed same-day for fast, accurate metabolic diagnostics.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image 3: Reception -->
+          <div class="clinic-card">
+            <div class="clinic-card-img-wrapper">
+              <img src="assets/images/clinic-reception.jpg" alt="Reception"
+                style="width: 100%; height: 320px; object-fit: cover; display: block;">
+            </div>
+            <div style="text-align: center;">
+              <h4 style="margin: 0 0 4px;">Welcoming Reception</h4>
+              <p class="text-muted" style="font-size: var(--size-label); margin: 0;">
+                A calm, discreet check-in experience that puts your comfort first from the moment you arrive.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Responsive -->
+      <style>
+        .clinic-grid {
+          display: flex !important;
+          flex-direction: row;
+          align-items: stretch !important;
+          gap: var(--space-4);
+        }
+        .clinic-card {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-3);
+          cursor: pointer;
+        }
+        .clinic-card-img-wrapper {
+          overflow: hidden;
+          border-radius: var(--radius);
+        }
+        .clinic-card-img-wrapper img {
+          transition: transform var(--transition);
+        }
+        .clinic-card:hover .clinic-card-img-wrapper img {
+          transform: scale(1.06);
+        }
+
+        @media (max-width: 1023px) and (min-width: 768px) {
+          .clinic-grid {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+          .clinic-card {
+            flex: 0 1 calc(50% - (var(--space-4) / 2));
+            max-width: calc(50% - (var(--space-4) / 2));
+          }
+          .clinic-card:nth-child(3) {
+            flex: 0 1 calc(50% - (var(--space-4) / 2));
+            max-width: calc(50% - (var(--space-4) / 2));
+          }
+        }
+
+        @media (max-width: 767px) {
+          .clinic-grid {
+            flex-direction: column;
+          }
+          .clinic-card {
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+
+        /* Conditions We Treat Responsive Grid Overrides */
+        .conditions-grid {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: var(--space-4);
+        }
+
+        @media (max-width: 1023px) and (min-width: 768px) {
+          .conditions-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .conditions-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+
+        /* How It Works Responsive Grid Overrides */
+        .process-grid {
+          display: grid !important;
+          grid-template-columns: repeat(4, 1fr) !important;
+          gap: var(--space-6) !important;
+        }
+
+        @media (max-width: 767px) {
+          .process-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      </style>
+    </section>
+    <!-- How It Works -->
+    <section class="how-it-works" style="padding: var(--section-padding);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>The Process</h2>
+          <p>Four simple steps to your new metabolic baseline.</p>
+        </div>
+
+        <div class="process-grid card-grid"
+          style="text-align: center; border: none;">
+          <div class="animate-fade-up">
+            <div
+              style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+              <i class="ph ph-stethoscope" style="font-size: 32px; color: var(--color-primary);"></i>
+            </div>
+            <h4>1. Consult</h4>
+            <p class="text-muted">Complete an online medical assessment.</p>
+          </div>
+          <div class="animate-fade-up delay-1">
+            <div
+              style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+              <i class="ph ph-clipboard-text" style="font-size: 32px; color: var(--color-primary);"></i>
+            </div>
+            <h4>2. Plan</h4>
+            <p class="text-muted">Get a tailored prescription and regimen.</p>
+          </div>
+          <div class="animate-fade-up delay-2">
+            <div
+              style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+              <i class="ph ph-package" style="font-size: 32px; color: var(--color-primary);"></i>
+            </div>
+            <h4>3. Ship</h4>
+            <p class="text-muted">Medication delivered discreetly to your door.</p>
+          </div>
+          <div class="animate-fade-up delay-3">
+            <div
+              style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+              <i class="ph ph-trend-up" style="font-size: 32px; color: var(--color-primary);"></i>
+            </div>
+            <h4>4. Track</h4>
+            <p class="text-muted">Monitor progress with your dedicated coach.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- CTA Strip -->
+    <section class="cta-banner"
+      style="padding: var(--space-12) 0; background: var(--color-primary); color: white; text-align: center;">
+      <div class="container animate-fade-up">
+        <h2 style="color: white; margin-bottom: var(--space-2);">Your Metabolic Reset Starts Today.</h2>
+        <h3
+          style="color: rgba(255,255,255,0.75); font-weight: var(--weight-h3); margin-bottom: var(--space-6); font-size: var(--size-h4);">
+          Join 15,000+ patients who chose science over willpower.</h3>
+        <a href="contact.html" class="btn btn-secondary">Book Your Free Consultation</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <!-- Similar footer to index -->
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-4);">
+            <i class="ph ph-activity"></i>
+            <span>Slim</span>Sync
+          </a>
+          <p style="color: var(--color-muted); font-size: var(--size-label);">Precision metabolic health and modern
+            clinical wellness.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 SlimSync Medical Weight Loss. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Stat counter animation logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.counter');
+      const speed = 200; // The lower the slower
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.getAttribute('data-target');
+
+            const updateCount = () => {
+              const count = +counter.innerText;
+              const inc = target / speed;
+              if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 20);
+              } else {
+                counter.innerText = target + (target > 100 ? '+' : '%');
+              }
+            };
+            updateCount();
+            observer.unobserve(counter);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => observer.observe(counter));
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard | SlimSync</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    body {
+      background-color: var(--color-bg);
+      overflow: hidden;
+    }
+    .dash-layout {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+    .sidebar {
+      width: 280px;
+      background-color: var(--color-surface);
+      border-right: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition);
+      z-index: 100;
+    }
+    .dash-main {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      background-color: var(--color-bg);
+      position: relative;
+    }
+    .sidebar-header {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      justify-content: space-between;
+    }
+    .sidebar-menu {
+      flex: 1;
+      padding: var(--space-4) 0;
+      overflow-y: auto;
+    }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      color: var(--color-text);
+      font-weight: var(--weight-btn);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+      border-left: 3px solid transparent;
+    }
+    .menu-item:hover {
+      background: rgba(13, 110, 110, 0.05);
+    }
+    .menu-item.active {
+      color: var(--color-primary);
+      background: rgba(13, 110, 110, 0.1);
+      border-left-color: var(--color-primary);
+    }
+    .menu-item i { font-size: 20px; }
+    
+    .dash-header {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      justify-content: space-between;
+    }
+    .dash-content {
+      padding: var(--space-6);
+    }
+    .dash-section {
+      display: none;
+      animation: fadeInUp 0.4s ease-out;
+    }
+    .dash-section.active { display: block; }
+
+    /* Drag Drop Zone */
+    .upload-zone {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-8);
+      text-align: center;
+      background: var(--color-surface);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .upload-zone.dragover {
+      border-color: var(--color-primary);
+      background: rgba(13, 110, 110, 0.05);
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: var(--space-8) 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--color-border);
+      z-index: 1;
+    }
+    .timeline-step {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      flex: 1;
+    }
+    .timeline-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-2);
+      color: var(--color-muted);
+      font-size: 20px;
+      transition: all var(--transition);
+    }
+    .timeline-step.completed .timeline-icon {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+    .timeline-step.current .timeline-icon {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(13, 110, 110, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(13, 110, 110, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(13, 110, 110, 0); }
+    }
+
+    /* Mobile handling */
+    .mobile-toggle { display: none; }
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: fixed;
+        left: -100%;
+        height: 100vh;
+      }
+      .sidebar.open { left: 0; box-shadow: var(--shadow); }
+      [dir="rtl"] .sidebar { left: auto; right: -100%; }
+      [dir="rtl"] .sidebar.open { right: 0; }
+      .mobile-toggle { display: block; }
+      .timeline { flex-direction: column; align-items: flex-start; gap: var(--space-6); margin-left: var(--space-4); }
+      .timeline::before {
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: 24px;
+      }
+      .timeline-step {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: var(--space-4);
+      }
+      .timeline-icon { margin: 0; }
+    }
+
+    @media (max-width: 767px) {
+      .dash-table-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        display: block;
+        width: 100%;
+        scrollbar-width: auto;
+        scrollbar-color: var(--color-primary) var(--color-bg);
+      }
+      .dash-table-wrapper::-webkit-scrollbar {
+        height: 10px;
+        display: block;
+      }
+      .dash-table-wrapper::-webkit-scrollbar-track {
+        background: var(--color-bg);
+        border-radius: 4px;
+      }
+      .dash-table-wrapper::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 4px;
+      }
+      .dash-table-wrapper::-webkit-scrollbar-thumb:hover {
+        background: var(--color-primary-dark, #0a5656);
+      }
+      .dash-table-wrapper table {
+        min-width: 500px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .dash-header {
+        padding: 0 var(--space-3) !important;
+      }
+      .dash-section .d-flex.gap-4 {
+        flex-direction: column !important;
+        gap: var(--space-2) !important;
+      }
+      .dash-section .d-flex.gap-4 .btn {
+        width: 100% !important;
+      }
+      .upload-zone {
+        padding: var(--space-4) var(--space-2) !important;
+      }
+      .subscription-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--space-3) !important;
+      }
+      .subscription-actions {
+        flex-direction: column !important;
+        gap: var(--space-2) !important;
+      }
+      .subscription-actions .btn, .subscription-actions .btn-text {
+        width: 100% !important;
+        text-align: center;
+        margin-left: 0 !important;
+      }
+      .tracker-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--space-2) !important;
+      }
+      .tracking-code {
+        font-size: 0.9rem !important;
+        word-break: break-all !important;
+        display: block !important;
+        width: 100% !important;
+      }
+      .p-6 {
+        padding: var(--space-3) !important;
+      }
+    }
+
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal-card {
+      background: var(--color-bg); padding: var(--space-6);
+      border-radius: var(--radius); width: 90%; max-width: 400px;
+      text-align: center; transform: scale(0.9); transition: all 0.3s;
+    }
+    .modal-overlay.active .modal-card { transform: scale(1); }
+
+    /* Spacing & Padding Utilities */
+    .p-4 { padding: var(--space-4) !important; }
+    .p-6 { padding: var(--space-6) !important; }
+    .mb-2 { margin-bottom: var(--space-2) !important; }
+    .mb-3 { margin-bottom: var(--space-3) !important; }
+    .mb-4 { margin-bottom: var(--space-4) !important; }
+    .mb-6 { margin-bottom: var(--space-6) !important; }
+    .mt-1 { margin-top: var(--space-1) !important; }
+    .mt-2 { margin-top: var(--space-2) !important; }
+    .mt-4 { margin-top: var(--space-4) !important; }
+    .mt-6 { margin-top: var(--space-6) !important; }
+
+    /* Custom text buttons (e.g. View action) */
+    .btn-text {
+      background: transparent;
+      border: none;
+      color: var(--color-primary);
+      font-weight: var(--weight-bold-inline);
+      cursor: pointer;
+      font-size: var(--size-label);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .btn-text:hover {
+      background: rgba(13, 110, 110, 0.08);
+      color: var(--color-primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dash-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="nav-brand"><i class="ph ph-activity"></i><span>Slim</span>Sync</a>
+        <button class="icon-btn mobile-toggle" id="closeSidebar"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="sidebar-menu">
+        <div class="menu-item active" data-target="overview"><i class="ph ph-squares-four"></i> My Overview</div>
+        <div class="menu-item" data-target="upload"><i class="ph ph-file-arrow-up"></i> Prescription Upload</div>
+        <div class="menu-item" data-target="subscriptions"><i class="ph ph-arrows-clockwise"></i> Auto-Refills</div>
+        <div class="menu-item" data-target="tracker"><i class="ph ph-truck"></i> Delivery Tracker</div>
+      </div>
+      <div class="sidebar-footer" style="padding: var(--space-4); border-top: 1px solid var(--color-border);">
+        <div class="menu-item" id="logoutBtn" style="color: var(--color-error);"><i class="ph ph-sign-out"></i> Logout</div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="dash-main">
+      <header class="dash-header">
+        <div class="d-flex align-center gap-3">
+          <button class="icon-btn mobile-toggle" id="openSidebar"><i class="ph ph-list"></i></button>
+          <h3 id="dashTitle" style="margin:0; font-size: var(--size-h4);">My Overview</h3>
+        </div>
+        <div class="d-flex align-center gap-3">
+          <button class="icon-btn theme-toggle"><i class="ph ph-moon"></i></button>
+          <button class="icon-btn rtl-toggle" aria-label="Toggle RTL"><i class="ph ph-arrows-left-right"></i></button>
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">JD</div>
+        </div>
+      </header>
+
+      <div class="dash-content">
+        
+        <!-- Section 1: Overview -->
+        <div class="dash-section active" id="overview">
+          <div class="card p-4 mb-6" style="background: linear-gradient(to right, var(--color-primary), var(--color-accent)); color: white; text-align: left; align-items: flex-start; border: none;">
+            <h2 style="color: white;">Welcome back, John!</h2>
+            <p style="opacity: 0.9;">You are currently on the <strong>Metabolic Reset</strong> program.</p>
+          </div>
+
+          <div class="card-grid mb-6">
+            <div class="card p-4" style="align-items: flex-start; text-align: left;">
+              <div class="d-flex justify-between w-full mb-2">
+                <span class="text-muted">Streak</span>
+                <i class="ph-fill ph-fire" style="color: var(--color-warning); font-size: 24px;"></i>
+              </div>
+              <h3 style="margin:0;">14 Days</h3>
+            </div>
+            <div class="card p-4" style="align-items: flex-start; text-align: left;">
+              <div class="d-flex justify-between w-full mb-2">
+                <span class="text-muted">Next Delivery</span>
+                <i class="ph ph-calendar" style="color: var(--color-primary); font-size: 24px;"></i>
+              </div>
+              <h3 style="margin:0;">Oct 24</h3>
+            </div>
+            <div class="card p-4" style="align-items: flex-start; text-align: left;">
+              <div class="d-flex justify-between w-full mb-2">
+                <span class="text-muted">Active Rx</span>
+                <i class="ph ph-pill" style="color: var(--color-primary); font-size: 24px;"></i>
+              </div>
+              <h3 style="margin:0;">1 Script</h3>
+            </div>
+            <div class="card p-4" style="align-items: flex-start; text-align: left;">
+              <div class="d-flex justify-between w-full mb-2">
+                <span class="text-muted">Your Coach</span>
+                <img src="assets/images/doctor-11.jpg" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover;">
+              </div>
+              <h3 style="margin:0; font-size: var(--size-lead);">Dr. Rostova</h3>
+            </div>
+          </div>
+
+          <div class="d-flex gap-4 flex-wrap">
+            <button class="btn btn-primary" onclick="switchTab('upload')">Upload Prescription</button>
+            <button class="btn btn-outline" onclick="switchTab('tracker')">Track Delivery</button>
+            <button class="btn btn-outline" onclick="switchTab('subscriptions')"><i class="ph ph-arrows-clockwise"></i> Refill</button>
+          </div>
+        </div>
+
+        <!-- Section 2: Prescription Upload -->
+        <div class="dash-section" id="upload">
+          <div class="card p-6 mb-6">
+            <h3 class="mb-2">Upload New Prescription</h3>
+            <p class="text-muted mb-6">Accepted formats: PDF, JPG, PNG, HEIC (Max 10MB)</p>
+            
+            <div class="upload-zone" id="dropZone">
+              <i class="ph ph-upload-simple" style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--space-2);"></i>
+              <h4>Drag & drop your file here</h4>
+              <p class="text-muted mt-1 mb-4">or</p>
+              <input type="file" id="fileInput" hidden accept=".pdf,.jpg,.jpeg,.png,.heic">
+              <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+              <div id="fileInfo" class="mt-4" style="display: none; font-weight: var(--weight-bold-inline); color: var(--color-primary);"></div>
+              <div id="fileError" class="error-text mt-2"></div>
+            </div>
+            <!-- PRESCRIPTION_UPLOAD_ENDPOINT -->
+            <button class="btn btn-primary w-full mt-4" id="uploadBtn" disabled>Upload Document</button>
+          </div>
+
+          <h3 class="mb-4">Upload History</h3>
+          <div class="dash-table-wrapper" style="background: var(--color-surface); border-radius: var(--radius); border: 1px solid var(--color-border);">
+            <table class="w-full text-left" style="border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+                  <th style="padding: var(--space-3);">File Name</th>
+                  <th style="padding: var(--space-3);">Date</th>
+                  <th style="padding: var(--space-3);">Status</th>
+                  <th style="padding: var(--space-3);">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <td style="padding: var(--space-3);">rx_october.pdf</td>
+                  <td style="padding: var(--space-3);">Oct 10, 2026</td>
+                  <td style="padding: var(--space-3);"><span class="badge approved">Approved</span></td>
+                  <td style="padding: var(--space-3);"><button class="btn-text"><i class="ph ph-eye"></i> View</button></td>
+                </tr>
+                <tr>
+                  <td style="padding: var(--space-3);">bloodwork.png</td>
+                  <td style="padding: var(--space-3);">Sep 15, 2026</td>
+                  <td style="padding: var(--space-3);"><span class="badge pending">Pending</span></td>
+                  <td style="padding: var(--space-3);"><button class="btn-text"><i class="ph ph-eye"></i> View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section 3: Subscriptions -->
+        <div class="dash-section" id="subscriptions">
+          <!-- STRIPE_BILLING_INTEGRATION -->
+          <div class="card p-6" style="text-align: left; align-items: flex-start;">
+            <div class="subscription-header d-flex justify-between w-full align-center mb-4 border-bottom pb-4" style="border-bottom: 1px solid var(--color-border);">
+              <div>
+                <div class="d-flex align-center gap-2 mb-1 flex-wrap">
+                  <h3 style="margin:0;">GLP-1 Medication (2.4mg)</h3>
+                  <span class="badge active" id="subStatus">Active</span>
+                </div>
+                <p class="text-muted">Monthly Refill • Ships Oct 24, 2026</p>
+              </div>
+              <h3 style="margin:0;">$299<span style="font-size: var(--size-caption); color: var(--color-muted);">/mo</span></h3>
+            </div>
+            
+            <div class="subscription-actions d-flex gap-3 w-full flex-wrap">
+              <button class="btn btn-outline" id="pauseSubBtn">Pause Subscription</button>
+              <button class="btn btn-outline">Edit Quantity</button>
+              <button class="btn btn-text" style="color: var(--color-error); margin-left: auto;" id="cancelSubBtn">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Empty State Demo -->
+          <div class="card p-8 mt-6" style="text-align: center; border: 2px dashed var(--color-border); background: transparent;">
+            <i class="ph ph-package" style="font-size: 48px; color: var(--color-muted); margin-bottom: var(--space-2);"></i>
+            <h4>No other active subscriptions</h4>
+            <p class="text-muted mb-4">Browse our programs to add new clinical support.</p>
+            <a href="programs.html" class="btn btn-outline">Browse Programs</a>
+          </div>
+        </div>
+
+        <!-- Section 4: Delivery Tracker -->
+        <div class="dash-section" id="tracker">
+          <!-- TRACKING_API_ENDPOINT -->
+          <div class="card p-6 mb-6" style="text-align: left; align-items: flex-start;">
+            <div class="tracker-header d-flex justify-between w-full mb-2">
+              <h3 style="margin:0;">Order #SS-98234</h3>
+              <span class="badge pending">In Transit</span>
+            </div>
+            <p class="text-muted mb-4">GLP-1 Medication (2.4mg) • Est. Delivery: Oct 26</p>
+            <p class="tracking-code" style="font-family: monospace; font-size: 1.1rem; background: var(--color-surface); padding: 8px 12px; border-radius: 4px; display: inline-block;">Tracking: 1Z9999999999999999</p>
+
+            <div class="timeline w-full">
+              <div class="timeline-step completed">
+                <div class="timeline-icon"><i class="ph ph-receipt"></i></div>
+                <div style="text-align: left;">
+                  <div style="font-weight: bold; line-height: 1.2;">Order Placed</div>
+                  <div class="text-muted" style="font-size: var(--size-caption); margin-top: 2px;">Oct 20</div>
+                </div>
+              </div>
+              <div class="timeline-step completed">
+                <div class="timeline-icon"><i class="ph ph-box-arrow-down"></i></div>
+                <div style="text-align: left;">
+                  <div style="font-weight: bold; line-height: 1.2;">Packed</div>
+                  <div class="text-muted" style="font-size: var(--size-caption); margin-top: 2px;">Oct 21</div>
+                </div>
+              </div>
+              <div class="timeline-step current">
+                <div class="timeline-icon"><i class="ph ph-truck"></i></div>
+                <div style="text-align: left;">
+                  <div style="font-weight: bold; line-height: 1.2;">Shipped</div>
+                  <div class="text-muted" style="font-size: var(--size-caption); margin-top: 2px;">Oct 22</div>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-icon"><i class="ph ph-map-pin"></i></div>
+                <div style="text-align: left;">
+                  <div style="font-weight: bold; line-height: 1.2;">Out for Delivery</div>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-icon"><i class="ph ph-house"></i></div>
+                <div style="text-align: left;">
+                  <div style="font-weight: bold; line-height: 1.2;">Delivered</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="mb-4">Past Orders</h3>
+          <div class="dash-table-wrapper" style="background: var(--color-surface); border-radius: var(--radius); border: 1px solid var(--color-border);">
+            <table class="w-full text-left" style="border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+                  <th style="padding: var(--space-3);">Order ID</th>
+                  <th style="padding: var(--space-3);">Product</th>
+                  <th style="padding: var(--space-3);">Date</th>
+                  <th style="padding: var(--space-3);">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <td style="padding: var(--space-3);">#SS-88123</td>
+                  <td style="padding: var(--space-3);">GLP-1 Medication (1.7mg)</td>
+                  <td style="padding: var(--space-3);">Sep 20, 2026</td>
+                  <td style="padding: var(--space-3);"><span class="badge approved">Delivered</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal-card">
+      <h3 class="mb-2">Log Out</h3>
+      <p class="text-muted mb-6">Are you sure you want to log out of your dashboard?</p>
+      <div class="d-flex gap-3 justify-center">
+        <button class="btn btn-outline" onclick="closeModal('logoutModal')">Cancel</button>
+        <button class="btn btn-primary" style="background: var(--color-error);" onclick="confirmLogout()">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cancelModal">
+    <div class="modal-card">
+      <h3 class="mb-2">Cancel Subscription</h3>
+      <p class="text-muted mb-6">Are you sure? You will lose access to clinical support and medication refills.</p>
+      <div class="d-flex gap-3 justify-center">
+        <button class="btn btn-outline" onclick="closeModal('cancelModal')">Keep Active</button>
+        <button class="btn btn-primary" style="background: var(--color-error);" onclick="confirmCancel()">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
