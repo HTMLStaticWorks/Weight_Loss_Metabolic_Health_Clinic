@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programs | SlimSync</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/slimsync_favicon.svg">
 
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -337,16 +338,16 @@
             </div>
 
             <!-- Feature points -->
-            <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); align-items: center;">
-              <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); width: fit-content; margin: 0 auto var(--space-6); align-items: flex-start;">
+              <div style="display: flex; align-items: center; gap: var(--space-2);">
                 <i class="ph ph-check-circle" style="color: var(--color-success); font-size: 22px; flex-shrink: 0;"></i>
                 <span style="font-size: var(--size-label); text-align: left;">FDA-approved GLP-1 medications included in clinical plans</span>
               </div>
-              <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+              <div style="display: flex; align-items: center; gap: var(--space-2);">
                 <i class="ph ph-check-circle" style="color: var(--color-success); font-size: 22px; flex-shrink: 0;"></i>
                 <span style="font-size: var(--size-label); text-align: left;">Personalised dosing adjusted weekly by your physician</span>
               </div>
-              <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-2);">
+              <div style="display: flex; align-items: center; gap: var(--space-2);">
                 <i class="ph ph-check-circle" style="color: var(--color-success); font-size: 22px; flex-shrink: 0;"></i>
                 <span style="font-size: var(--size-label); text-align: left;">Cancel or pause anytime — no long-term contracts</span>
               </div>
@@ -507,6 +508,12 @@
                   </a>
                   <p style="color: var(--color-muted); font-size: var(--size-label);">Precision metabolic health and
                       modern clinical wellness. Transform your life today.</p>
+                  <div class="footer-socials">
+                      <a href="#" class="social-icon-link" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                      <a href="#" class="social-icon-link" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                      <a href="#" class="social-icon-link" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+                      <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                  </div>
               </div>
 
               <div class="footer-col">
@@ -546,25 +553,6 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
-  <script>
-    // FAQ Logic
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        item.classList.toggle('active');
-      });
-    });
-
-    // Sticky Bar Logic
-    const stickyBar = document.getElementById('stickyComparison');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400 && window.innerWidth > 1024) {
-        stickyBar.classList.add('visible');
-      } else {
-        stickyBar.classList.remove('visible');
-      }
-    });
-  </script>
 </body>
 
 </html>

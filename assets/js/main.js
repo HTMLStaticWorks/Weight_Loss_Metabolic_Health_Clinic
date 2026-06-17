@@ -9,7 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyNav();
   initAnimations();
   initFaqAccordion();
+  initBackToTop();
 });
+
+/* ==========================================
+   Back to Top Button
+   ========================================== */
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.id = 'backToTop';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<i class="ph ph-arrow-up"></i>';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
 
 /* ==========================================
    FAQ Accordion

@@ -5,9 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | SlimSync</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/slimsync_favicon.svg">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/rtl.css">
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      align-items: stretch;
+    }
+
+    @media (max-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -93,14 +114,13 @@
       <div class="container">
         <!-- Categories -->
         <div class="d-flex justify-center gap-2 mb-8 flex-wrap animate-fade-up delay-1">
-          <a href="#" class="badge active">All</a>
-          <a href="#" class="badge" style="background:var(--color-surface); color:var(--color-text);">GLP-1 Science</a>
-          <a href="#" class="badge" style="background:var(--color-surface); color:var(--color-text);">Nutrition</a>
-          <a href="#" class="badge" style="background:var(--color-surface); color:var(--color-text);">Success
-            Stories</a>
+          <a href="#" class="filter-badge active">All</a>
+          <a href="#" class="filter-badge">GLP-1 Science</a>
+          <a href="#" class="filter-badge">Nutrition</a>
+          <a href="#" class="filter-badge">Success Stories</a>
         </div>
 
-        <div class="card-grid animate-fade-up delay-2">
+        <div class="blog-grid animate-fade-up delay-2">
 
           <!-- Post 1 -->
           <div class="card p-0" style="text-align: left; align-items: flex-start;">
@@ -267,6 +287,12 @@
             <span>Slim</span>Sync
           </a>
           <p style="color: var(--color-muted); font-size: var(--size-label);">Precision metabolic health and modern clinical wellness. Transform your life today.</p>
+          <div class="footer-socials">
+              <a href="#" class="social-icon-link" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+              <a href="#" class="social-icon-link" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+              <a href="#" class="social-icon-link" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+              <a href="#" class="social-icon-link" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Programs</h4>
