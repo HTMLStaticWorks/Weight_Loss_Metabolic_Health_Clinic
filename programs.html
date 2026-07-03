@@ -28,9 +28,10 @@
     }
 
     .comparison-table th {
-      background: var(--color-bg);
+      background: var(--color-surface);
       font-weight: var(--weight-h4);
       font-size: var(--size-lead);
+      border-bottom: 2px solid var(--color-border);
     }
 
     .comparison-table th:first-child,
@@ -403,7 +404,237 @@
           height: 300px !important;
         }
       }
+
+      /* Detailed Program Cards Styling */
+      .program-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-6);
+        align-items: stretch;
+        margin-top: var(--space-8);
+      }
+
+      .program-card {
+        background: var(--color-bg);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform var(--transition), box-shadow var(--transition);
+        position: relative;
+        text-align: center;
+      }
+
+      .program-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .program-card.featured {
+        border-color: var(--color-primary);
+        box-shadow: var(--shadow);
+      }
+
+      .program-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: var(--color-accent);
+        color: var(--color-primary);
+        border-radius: 100px;
+        font-size: var(--size-caption);
+        font-weight: var(--weight-bold-inline);
+        margin-bottom: var(--space-3);
+        width: fit-content;
+        margin-inline: auto;
+      }
+
+      .program-badge.featured-badge {
+        background: var(--color-secondary);
+        color: white;
+      }
+
+      .program-card h3 {
+        font-size: var(--size-h3);
+        margin-bottom: var(--space-2);
+        color: var(--color-text);
+      }
+
+      .program-desc {
+        color: var(--color-muted);
+        font-size: var(--size-label);
+        line-height: 1.5;
+        margin-bottom: var(--space-4);
+      }
+
+      .program-price {
+        font-family: var(--font-heading);
+        font-size: var(--size-h2);
+        font-weight: var(--weight-h1);
+        color: var(--color-primary);
+        margin-bottom: var(--space-4);
+      }
+
+      .program-price span {
+        font-size: var(--size-body);
+        font-weight: normal;
+        color: var(--color-muted);
+      }
+
+      .program-card-body {
+        border-top: 1px solid var(--color-border);
+        padding-top: var(--space-4);
+        margin-bottom: var(--space-6);
+        flex-grow: 1;
+      }
+
+      .program-card-body h4 {
+        font-size: var(--size-label);
+        font-weight: var(--weight-bold-inline);
+        margin-bottom: var(--space-3);
+      }
+
+      .program-features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        display: inline-flex;
+        flex-direction: column;
+        gap: var(--space-2);
+        text-align: left;
+      }
+
+      .program-features-list li {
+        font-size: var(--size-label);
+        color: var(--color-text);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+        text-align: left;
+        line-height: 1.4;
+      }
+
+      .program-features-list li i {
+        color: var(--color-primary);
+        font-size: 1.1rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .program-card.featured .program-features-list li i {
+        color: var(--color-success);
+      }
+
+      @media (max-width: 1024px) {
+        .program-cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .program-cards-grid > :nth-child(3) {
+          grid-column: 1 / span 2;
+          justify-self: center;
+          width: calc((100% - var(--space-6)) / 2);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .program-cards-grid {
+          grid-template-columns: 1fr;
+        }
+        .program-cards-grid > :nth-child(3) {
+          grid-column: auto;
+          width: 100%;
+          max-width: none;
+        }
+      }
     </style>
+
+    <!-- Detailed Program Offerings -->
+    <section style="padding: var(--section-padding); background-color: var(--color-surface);">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>Clinical Program Offerings</h2>
+          <p>Explore our evidence-based clinical pathways, designed with medical diagnostics, biological reset solutions, and physician monitoring.</p>
+        </div>
+
+        <div class="program-cards-grid animate-fade-up delay-1">
+          <!-- Starter Program -->
+          <div class="program-card">
+            <div>
+              <div class="program-card-header">
+                <span class="program-badge">Self-Guided Reset</span>
+                <h3>Starter</h3>
+                <p class="program-desc">Best for individuals looking for a structured, science-backed lifestyle plan without medical weight loss prescriptions.</p>
+                <div class="program-price">$99<span>/mo</span></div>
+              </div>
+              <div class="program-card-body">
+                <h4>Services Included:</h4>
+                <ul class="program-features-list">
+                  <li><i class="ph ph-check-circle"></i> Custom Meal & Metabolic Diet Plans</li>
+                  <li><i class="ph ph-check-circle"></i> Digital Health & Activity Tracking Integration</li>
+                  <li><i class="ph ph-check-circle"></i> Structured Educational Wellness Curriculum</li>
+                  <li><i class="ph ph-check-circle"></i> Weekly Self-Tracking Progress Reports</li>
+                  <li><i class="ph ph-check-circle"></i> Access to Patient Resource Portal</li>
+                </ul>
+              </div>
+            </div>
+            <div class="program-card-footer">
+              <a href="contact.html?program=starter" class="btn btn-outline w-full">Select Starter Plan</a>
+            </div>
+          </div>
+
+          <!-- Metabolic Reset Program -->
+          <div class="program-card featured">
+            <div>
+              <div class="program-card-header">
+                <span class="program-badge featured-badge">Most Popular</span>
+                <h3>Metabolic Reset</h3>
+                <p class="program-desc">Our flagship medical program targeting the underlying biological causes of weight gain with prescribed GLP-1 therapy.</p>
+                <div class="program-price">$299<span>/mo</span></div>
+              </div>
+              <div class="program-card-body">
+                <h4>Services Included:</h4>
+                <ul class="program-features-list">
+                  <li><i class="ph ph-check-circle"></i> FDA-Approved GLP-1 Medications (Semaglutide / Tirzepatide)</li>
+                  <li><i class="ph ph-check-circle"></i> Initial Doctor Visit & Comprehensive Evaluation</li>
+                  <li><i class="ph ph-check-circle"></i> Weekly Physician Review & Prescription Adjustments</li>
+                  <li><i class="ph ph-check-circle"></i> Continuous Clinical Oversight & Side Effect Management</li>
+                  <li><i class="ph ph-check-circle"></i> Diagnostics Lab Order Option ($99 lab fee)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="program-card-footer">
+              <a href="contact.html?program=reset" class="btn btn-primary w-full">Start Reset Program</a>
+            </div>
+          </div>
+
+          <!-- Elite Clinical Coaching Program -->
+          <div class="program-card">
+            <div>
+              <div class="program-card-header">
+                <span class="program-badge">All-Inclusive Care</span>
+                <h3>Elite Coaching</h3>
+                <p class="program-desc">Complete medical care combined with daily dietitian coaching and advanced wellness biomarker monitoring.</p>
+                <div class="program-price">$499<span>/mo</span></div>
+              </div>
+              <div class="program-card-body">
+                <h4>Services Included:</h4>
+                <ul class="program-features-list">
+                  <li><i class="ph ph-check-circle"></i> All benefits & services in the Metabolic Reset Plan</li>
+                  <li><i class="ph ph-check-circle"></i> Daily 1-on-1 Health Coaching with Clinical Dietitians</li>
+                  <li><i class="ph ph-check-circle"></i> Comprehensive Diagnostic Lab Blood Panels Included</li>
+                  <li><i class="ph ph-check-circle"></i> Ongoing Biomarker, Inflammation, & Hormone Tracking</li>
+                  <li><i class="ph ph-check-circle"></i> Priority Direct Doctor Hotline Access</li>
+                </ul>
+              </div>
+            </div>
+            <div class="program-card-footer">
+              <a href="contact.html?program=elite" class="btn btn-outline w-full">Choose Elite Coaching</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Comparison Table -->
     <section style="padding: var(--section-padding);">
